@@ -11,7 +11,11 @@
   </prerequisites>
   <properties>
     <spark-core.version>2.6.0</spark-core.version>
-    <git-commit-id-plugin.version>2.2.1</git-commit-id-plugin.version>
+    <!-- Version of git-commit-id-plugin has to be 2.1.9, until 2.2.3 is released.
+      For details, see https://github.com/spring-projects/spring-boot/issues/7980#issuecomment-291249598 -->
+    <git-commit-id-plugin.version>2.1.9</git-commit-id-plugin.version>
+    <maven-shade-plugin.version>3.0.0</maven-shade-plugin.version>
+    <fabric8.docker-maven-plugin.version>0.21.0</fabric8.docker-maven-plugin.version>
     <maven-failsafe-plugin.version>2.20</maven-failsafe-plugin.version>
     <junit.version>4.12</junit.version>
     <fluent-hc.version>4.5.3</fluent-hc.version>
@@ -23,6 +27,7 @@
   <build>
     <plugins>
       <plugin>
+        <!-- Writing git-information to target/classes/git.properties -->
         <groupId>pl.project13.maven</groupId>
         <artifactId>git-commit-id-plugin</artifactId>
         <version>${git-commit-id-plugin.version}</version>
@@ -36,6 +41,54 @@
         </executions>
         <configuration>
           <generateGitPropertiesFile>true</generateGitPropertiesFile>
+          <generateGitPropertiesFilename>target/classes/git.properties
+          </generateGitPropertiesFilename>
+        </configuration>
+      </plugin>
+      <plugin>
+        <!-- Build executable jar, Source: https://stackoverflow.com/a/33880083/1645517 -->
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>${maven-shade-plugin.version}</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <createDependencyReducedPom>false</createDependencyReducedPom>
+              <transformers>
+                <transformer
+                  implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>schulte.markus.dockercomposerulesparkdemo.App</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <!-- Build docker image for this git-commit-id. Has to run after maven-shade-plugin! -->
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <version>${fabric8.docker-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>build</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <images>
+            <image>
+              <name>${project.groupId}/${project.artifactId}:${git.commit.id.abbrev}</name>
+              <build>
+                <dockerFileDir>${basedir}</dockerFileDir>
+              </build>
+            </image>
+          </images>
         </configuration>
       </plugin>
       <plugin>

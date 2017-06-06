@@ -1,0 +1,2 @@
+# What is this for? See https://github.com/fabric8io/docker-maven-plugin/issues/397#issuecomment-188990688
+target/docker/**
