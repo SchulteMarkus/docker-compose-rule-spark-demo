@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  spark-hello-world-service:
+    image: schulte.markus/docker-compose-rule-spark-demo:$SPARK_HELLO_WORLD_SERVICE_VERSION
+    ports:
+      - 4567

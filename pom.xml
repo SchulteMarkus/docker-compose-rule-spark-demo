@@ -18,12 +18,19 @@
     <fabric8.docker-maven-plugin.version>0.21.0</fabric8.docker-maven-plugin.version>
     <maven-failsafe-plugin.version>2.20</maven-failsafe-plugin.version>
     <junit.version>4.12</junit.version>
+    <docker-compose-rule-junit4.version>0.32.0</docker-compose-rule-junit4.version>
     <fluent-hc.version>4.5.3</fluent-hc.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
+  <repositories>
+    <repository>
+      <id>palantir-releases</id>
+      <url>https://dl.bintray.com/palantir/releases</url>
+    </repository>
+  </repositories>
   <build>
     <plugins>
       <plugin>
@@ -115,6 +122,12 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.palantir.docker.compose</groupId>
+      <artifactId>docker-compose-rule-junit4</artifactId>
+      <version>${docker-compose-rule-junit4.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>

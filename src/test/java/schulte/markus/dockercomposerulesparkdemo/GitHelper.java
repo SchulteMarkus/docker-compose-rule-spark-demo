@@ -13,9 +13,15 @@ interface GitHelper {
 
   String GIT_COMMIT_ID_ABBREV_KEY = "git.commit.id.abbrev";
 
-  static String getGitRepositoryProperties() throws IOException {
-    final Properties properties = new Properties();
-    properties.load(GitHelper.class.getClassLoader().getResourceAsStream(GIT_PROPERTIES_FILE_NAME));
-    return properties.getProperty(GIT_COMMIT_ID_ABBREV_KEY);
+  static String getCommitId() {
+    final Properties gitPropertiesFile = new Properties();
+    try {
+      gitPropertiesFile
+        .load(GitHelper.class.getClassLoader().getResourceAsStream(GIT_PROPERTIES_FILE_NAME));
+    } catch (final IOException e) {
+      throw new RuntimeException("IO problem handling " + GIT_PROPERTIES_FILE_NAME, e);
+    }
+
+    return gitPropertiesFile.getProperty(GIT_COMMIT_ID_ABBREV_KEY);
   }
 }
