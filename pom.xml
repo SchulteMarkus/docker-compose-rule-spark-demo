@@ -6,11 +6,47 @@
   <artifactId>docker-compose-rule-spark-demo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <url>https://schultemarkus.github.io/docker-compose-rule-spark-demo/</url>
+  <prerequisites>
+    <maven>3.3.9</maven>
+  </prerequisites>
+  <properties>
+    <spark-core.version>2.6.0</spark-core.version>
+    <junit.version>4.12</junit.version>
+    <fluent-hc.version>4.5.3</fluent-hc.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
   <dependencies>
+    <dependency>
+      <groupId>com.sparkjava</groupId>
+      <artifactId>spark-core</artifactId>
+      <version>${spark-core.version}</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>fluent-hc</artifactId>
+      <version>${fluent-hc.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
