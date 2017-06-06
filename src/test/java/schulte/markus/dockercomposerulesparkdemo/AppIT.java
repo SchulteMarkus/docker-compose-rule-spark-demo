@@ -14,6 +14,8 @@ public class AppIT {
   public void test() throws IOException {
     App.main();
 
+    final String gitCommitId = GitHelper.getGitRepositoryProperties();
+
     final Content content = Request.Get(URI).execute().returnContent();
     Assert.assertEquals("Hello World", content.asString());
   }
