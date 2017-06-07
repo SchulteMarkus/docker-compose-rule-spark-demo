@@ -84,7 +84,7 @@ git.commit.id.describe=8379f8a
 - Now, build your docker-image as part of `maven package`-phase. For this purpose 
 [fabric8io/docker-maven-plugin](https://github.com/fabric8io/docker-maven-plugin) is used, see 
 [pom.xml](pom.xml). The way this Maven-plugin is used, a docker-image will be created while 
-`maven package`-phase, tagged with the current git-commit-id.
+`maven package`-phase, tagged with the current git-commit-id. Note the required [.maven-dockerignore](.maven-dockerignore).
 ```bash
 docker-compose-rule-spark-demo $ mvn package
 ...
