@@ -1,4 +1,4 @@
-# [Docker Compose JUnit Rule](https://github.com/palantir/docker-compose-rule) [Spark](http://sparkjava.com/) demo
+# [Docker Compose JUnit Rule](https://github.com/palantir/docker-compose-rule) [Spark](http://sparkjava.com/) demo [![Build Status](https://travis-ci.org/SchulteMarkus/docker-compose-rule-spark-demo.svg?branch=master)](https://travis-ci.org/SchulteMarkus/docker-compose-rule-spark-demo)
 Demonstrating [Docker Compose JUnit Rule](https://github.com/palantir/docker-compose-rule) in a 
 [Spark](http://sparkjava.com/) project
 
