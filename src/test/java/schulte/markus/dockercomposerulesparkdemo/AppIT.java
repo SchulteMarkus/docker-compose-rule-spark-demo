@@ -41,9 +41,6 @@ public class AppIT {
 
   @Test
   public void test() throws IOException {
-    // Start application (serves /hello)
-    App.main();
-
     final String sparkHelloWorldServiceUrl = this.getSparkHelloWorldServiceUrl();
 
     final Content content = Request.Get(sparkHelloWorldServiceUrl + "/" + App.PATH)
