@@ -4,7 +4,6 @@ import com.palantir.docker.compose.DockerComposeRule;
 import com.palantir.docker.compose.connection.DockerMachine;
 import com.palantir.docker.compose.connection.DockerPort;
 import java.io.IOException;
-import org.apache.http.HttpHost;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
 import org.junit.Assert;
@@ -43,7 +42,7 @@ public class AppIT {
   public void test() throws IOException {
     final String sparkHelloWorldServiceUrl = this.getSparkHelloWorldServiceUrl();
 
-    final Content content = Request.Get(sparkHelloWorldServiceUrl + "/" + App.PATH)
+    final Content content = Request.Get(sparkHelloWorldServiceUrl + "/hello")
       .execute()
       .returnContent();
     Assert.assertEquals("Hello World", content.asString());
@@ -58,7 +57,7 @@ public class AppIT {
     final DockerPort serviceDockerPort
       = this.docker.containers().container(SPARK_HELLO_WORLD_SERVICE_NAME).port(SPARK_DEFAULT_PORT);
     // Create url (http://...), which is the one for the just started spark-hello-world-service in it's docker-container
-    return String.format("%s://%s:%d", HttpHost.DEFAULT_SCHEME_NAME, serviceDockerPort.getIp(),
-      serviceDockerPort.getExternalPort());
+    return String
+      .format("http://%s:%d", serviceDockerPort.getIp(), serviceDockerPort.getExternalPort());
   }
 }
