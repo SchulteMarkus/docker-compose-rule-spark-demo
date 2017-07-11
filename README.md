@@ -15,7 +15,7 @@ git-commit-id you are working on, or your CI-system has checked out.
 ## Demo setup
 
 For this demo, [Spark](http://sparkjava.com/) is used, "A micro framework for creating web 
-applications\[...\]". The application is very simple, it serves */hello* as a "Hello Wolrd"-endpoint,
+applications\[...\]". The application is very simple, it serves */hello* as a "Hello World"-endpoint,
 see [App.java](src/main/java/schulte/markus/dockercomposerulesparkdemo/App.java).
 
 ## Demo usage
