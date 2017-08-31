@@ -1,6 +1,6 @@
-# [Docker Compose JUnit Rule](https://github.com/palantir/docker-compose-rule) [Spark](http://sparkjava.com/) demo [![Build Status](https://travis-ci.org/SchulteMarkus/docker-compose-rule-spark-demo.svg?branch=master)](https://travis-ci.org/SchulteMarkus/docker-compose-rule-spark-demo)
+# [Docker Compose JUnit Rule Spark demo](https://github.com/SchulteMarkus/docker-compose-rule-spark-demo) [![Build Status](https://travis-ci.org/SchulteMarkus/docker-compose-rule-spark-demo.svg?branch=master)](https://travis-ci.org/SchulteMarkus/docker-compose-rule-spark-demo)
 Demonstrating [Docker Compose JUnit Rule](https://github.com/palantir/docker-compose-rule) in a 
-[Spark](http://sparkjava.com/) project
+[Spark](http://sparkjava.com/) project.
 
 ## Challenge
 
@@ -10,7 +10,7 @@ Docker), using your build-tool [Apache Maven](https://maven.apache.org/) and you
 [JUnit](http://junit.org/). You are using [Git](https://git-scm.com/).
 
 This testing shall be capable of multiple builds at the same time. You want to test exact the 
-git-commit-id you are working on, or your CI-system has checked out. 
+git-commit-id you are working on, or your CI-system has checked out. Parallel builds on different branches shall be possible.
 
 ## Demo setup
 
