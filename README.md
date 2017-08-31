@@ -9,8 +9,8 @@ You got a [Java](https://www.java.com/)-microservice, which you want to run usin
 Docker), using your build-tool [Apache Maven](https://maven.apache.org/) and your test-framework 
 [JUnit](http://junit.org/). You are using [Git](https://git-scm.com/).
 
-This testing shall be capable of multiple builds at the same time. You want to test exact the 
-git-commit-id you are working on, or your CI-system has checked out. Parallel builds on different branches shall be possible.
+This testing shall be capable of parallel builds (on different git-branches) at the same time. You want to test exact the 
+git-commit-id you are working on, or your CI-system has checked out.
 
 ## Demo setup
 
