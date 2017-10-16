@@ -5,9 +5,10 @@ Demonstrating [Docker Compose JUnit Rule](https://github.com/palantir/docker-com
 ## Challenge
 
 You got a [Java](https://www.java.com/)-microservice, which you want to run using 
-[Docker](https://www.docker.com/). You want to integration-test this (your appliation running in 
-Docker), using your build-tool [Apache Maven](https://maven.apache.org/) and your test-framework 
-[JUnit](http://junit.org/). You are using [Git](https://git-scm.com/).
+[Docker](https://www.docker.com/)([-compose](https://docs.docker.com/compose/)). You want to 
+integration-test this (your application running in Docker), using your build-tool 
+[Apache Maven](https://maven.apache.org/) and your test-framework [JUnit](http://junit.org/). You 
+are using [Git](https://git-scm.com/).
 
 This testing shall be capable of parallel builds (on different git-branches) at the same time. You want to test exact the 
 git-commit-id you are working on, or your CI-system has checked out.
@@ -23,7 +24,7 @@ see [App.java](src/main/java/schulte/markus/dockercomposerulesparkdemo/App.java)
 **Required**
 - [Git](https://git-scm.com/)
 - [Maven](https://maven.apache.org/)
-- [Docker](https://www.docker.com/)
+- [Docker](https://www.docker.com/), including [Docker-compose](https://docs.docker.com/compose/)
 
 ```bash
 # Builds a docker-image for this git-commit-id, integration-tests against a related container
