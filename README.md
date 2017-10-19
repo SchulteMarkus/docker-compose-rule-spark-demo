@@ -1,4 +1,7 @@
-# [Docker Compose JUnit Rule Spark demo](https://github.com/SchulteMarkus/docker-compose-rule-spark-demo) [![Build Status](https://travis-ci.org/SchulteMarkus/docker-compose-rule-spark-demo.svg?branch=master)](https://travis-ci.org/SchulteMarkus/docker-compose-rule-spark-demo)
+# [Docker Compose JUnit Rule Spark demo](https://github.com/SchulteMarkus/docker-compose-rule-spark-demo) 
+[![Build Status](https://travis-ci.org/SchulteMarkus/docker-compose-rule-spark-demo.svg?branch=master)](https://travis-ci.org/SchulteMarkus/docker-compose-rule-spark-demo)
+[![Checkstyle count](https://s3.amazonaws.com/schultedev-xml-metrics-to-html/github/SchulteMarkus/docker-compose-rule-spark-demo/master/checkstyle/count.svg)](https://s3.amazonaws.com/schultedev-xml-metrics-to-html/github/SchulteMarkus/docker-compose-rule-spark-demo/master/checkstyle/index.html)
+
 Demonstrating [Docker Compose JUnit Rule](https://github.com/palantir/docker-compose-rule) in a 
 [Spark](http://sparkjava.com/) project.
 
