@@ -5,6 +5,7 @@ import com.palantir.docker.compose.connection.DockerMachine;
 import java.io.IOException;
 import org.apache.http.client.fluent.Request;
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -24,10 +25,12 @@ public class AppIT {
 
   {
     // As docker-image, use the one for this git-commit-id (which was created while "mvn package")
-    final var gitCommitId = GitHelper.getCommitId();
+    final var optionalGitCommitId = GitHelper.getCommitId();
+    Assume.assumeTrue("Git commit id has to be available", optionalGitCommitId.isPresent());
+
     final var dockerMachine = DockerMachine.localMachine()
       .withAdditionalEnvironmentVariable(AppIT.SPARK_HELLO_WORLD_SERVICE_VERSION_ENV_VAR_NAME,
-        gitCommitId)
+        optionalGitCommitId.get())
       .build();
 
     this.docker = DockerComposeRule.builder()
