@@ -2,9 +2,7 @@ package schulte.markus.dockercomposerulesparkdemo;
 
 import com.palantir.docker.compose.DockerComposeRule;
 import com.palantir.docker.compose.connection.DockerMachine;
-import com.palantir.docker.compose.connection.DockerPort;
 import java.io.IOException;
-import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -22,30 +20,30 @@ public class AppIT {
     = "SPARK_HELLO_WORLD_SERVICE_VERSION";
 
   @Rule
-  public DockerComposeRule docker;
+  public final DockerComposeRule docker;
 
   {
     // As docker-image, use the one for this git-commit-id (which was created while "mvn package")
-    final String gitCommitId = GitHelper.getCommitId();
-    final DockerMachine dockerMachine = DockerMachine.localMachine()
-      .withAdditionalEnvironmentVariable(
-        SPARK_HELLO_WORLD_SERVICE_VERSION_ENV_VAR_NAME, gitCommitId)
+    final var gitCommitId = GitHelper.getCommitId();
+    final var dockerMachine = DockerMachine.localMachine()
+      .withAdditionalEnvironmentVariable(AppIT.SPARK_HELLO_WORLD_SERVICE_VERSION_ENV_VAR_NAME,
+        gitCommitId)
       .build();
 
     this.docker = DockerComposeRule.builder()
-      .file(DOCKER_COMPOSE_YML_FILE)
+      .file(AppIT.DOCKER_COMPOSE_YML_FILE)
       .machine(dockerMachine)
       .build();
   }
 
   @Test
   public void test() throws IOException {
-    final String sparkHelloWorldServiceUrl = this.getSparkHelloWorldServiceUrl();
+    final var sparkHelloWorldServiceUrl = this.getSparkHelloWorldServiceUrl();
 
-    final Content content = Request.Get(sparkHelloWorldServiceUrl + "/hello")
+    final var content = Request.Get(sparkHelloWorldServiceUrl + App.PATH)
       .execute()
       .returnContent();
-    Assert.assertEquals("Hello World", content.asString());
+    Assert.assertEquals(App.HELLO_WORLD_HTML_CONTENT, content.asString());
   }
 
   /**
@@ -54,8 +52,9 @@ public class AppIT {
    */
   private String getSparkHelloWorldServiceUrl() {
     // Get ip and port of started spark-hello-world-service
-    final DockerPort serviceDockerPort
-      = this.docker.containers().container(SPARK_HELLO_WORLD_SERVICE_NAME).port(SPARK_DEFAULT_PORT);
+    final var serviceDockerPort = this.docker.containers()
+      .container(AppIT.SPARK_HELLO_WORLD_SERVICE_NAME)
+      .port(AppIT.SPARK_DEFAULT_PORT);
     // Create url (http://...), which is the one for the just started spark-hello-world-service in it's docker-container
     return String
       .format("http://%s:%d", serviceDockerPort.getIp(), serviceDockerPort.getExternalPort());

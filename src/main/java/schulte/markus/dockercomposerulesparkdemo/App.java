@@ -4,9 +4,12 @@ import spark.Spark;
 
 public class App {
 
-  private static final String PATH = "/hello";
+  static final String HELLO_WORLD_HTML_CONTENT
+    = "<html><body><h1 id=\"h1-hello\">Hello world!</h1></body></html>";
+
+  static final String PATH = "/hello";
 
   public static void main(final String... args) {
-    Spark.get(PATH, (req, res) -> "Hello World");
+    Spark.get(App.PATH, (req, res) -> App.HELLO_WORLD_HTML_CONTENT);
   }
 }

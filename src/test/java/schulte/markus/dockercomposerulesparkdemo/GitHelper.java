@@ -14,14 +14,14 @@ interface GitHelper {
   String GIT_COMMIT_ID_ABBREV_KEY = "git.commit.id.abbrev";
 
   static String getCommitId() {
-    final Properties gitPropertiesFile = new Properties();
+    final var gitPropertiesFile = new Properties();
     try {
-      gitPropertiesFile
-        .load(GitHelper.class.getClassLoader().getResourceAsStream(GIT_PROPERTIES_FILE_NAME));
+      gitPropertiesFile.load(GitHelper.class.getClassLoader().getResourceAsStream(
+        GitHelper.GIT_PROPERTIES_FILE_NAME));
     } catch (final IOException e) {
-      throw new RuntimeException("IO problem handling " + GIT_PROPERTIES_FILE_NAME, e);
+      throw new RuntimeException("IO problem handling " + GitHelper.GIT_PROPERTIES_FILE_NAME, e);
     }
 
-    return gitPropertiesFile.getProperty(GIT_COMMIT_ID_ABBREV_KEY);
+    return gitPropertiesFile.getProperty(GitHelper.GIT_COMMIT_ID_ABBREV_KEY);
   }
 }
