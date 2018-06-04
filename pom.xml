@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>schulte.markus</groupId>
@@ -13,7 +13,7 @@
     <fabric8.docker-maven-plugin.version>0.26.0</fabric8.docker-maven-plugin.version>
     <maven-failsafe-plugin.version>2.21.0</maven-failsafe-plugin.version>
     <maven.checkstyle.plugin.version>3.0.0</maven.checkstyle.plugin.version>
-    <puppycrawl-checkstyle.version>8.9</puppycrawl-checkstyle.version>
+    <puppycrawl-checkstyle.version>8.10.1</puppycrawl-checkstyle.version>
     <junit.version>4.12</junit.version>
     <docker-compose-rule-junit4.version>0.33.0</docker-compose-rule-junit4.version>
     <fluent-hc.version>4.5.5</fluent-hc.version>
